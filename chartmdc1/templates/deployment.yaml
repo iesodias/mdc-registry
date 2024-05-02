@@ -18,3 +18,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.healthcheck.livenessProbe }}
+              port: 5000
+            initialDelaySeconds: {{ .Values.healthcheck.initialDelaySeconds }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.healthcheck.readinessProbe }}
+              port: 5000
+            initialDelaySeconds: {{ .Values.healthcheck.initialDelaySeconds }}

@@ -8,3 +8,11 @@ service:
   type: LoadBalancer
   port: 80
   targetPort: 5000
+healthcheck:
+  livenessProbe: /success
+  readinessProbe: /success
+  initialDelaySeconds: 30
+hpa:
+  minReplicas: 1
+  maxReplicas: 20
+  averageUtilization: 70
